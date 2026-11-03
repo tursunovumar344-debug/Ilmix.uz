@@ -2,7 +2,10 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Ekran kattalashishini cheklash -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
   <meta name="theme-color" content="#090d1b">
   <meta name="description" content="ILMIX — mavzularni sodda va tushunarli o‘rganish platformasi.">
   <title>ILMIX — Har bir mavzu tushunarli</title>
@@ -11,6 +14,7 @@
     :root {
       --bg: #090d1b;
       --panel: #11182b;
+      --panel-2: #151e35;
       --line: rgba(160,177,220,.13);
       --text: #f4f6ff;
       --muted: #9aa8c7;
@@ -24,6 +28,8 @@
 
     * {
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     html {
@@ -45,11 +51,6 @@
 
     button, a, input, select, textarea {
       font: inherit;
-    }
-
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
     }
 
     button {
@@ -363,7 +364,6 @@
       border: 0;
       cursor: pointer;
       padding: 9px;
-      touch-action: manipulation;
     }
 
     .subject-grid {
@@ -593,4 +593,951 @@
 
     .profile-top {
       display: flex;
-      align
+      align-items: center;
+      gap: 17px;
+      margin-bottom: 20px;
+    }
+
+    .avatar {
+      width: 65px;
+      height: 65px;
+      display: grid;
+      place-items: center;
+      border-radius: 22px;
+      font-size: 25px;
+      font-weight: 800;
+      background: linear-gradient(140deg,#6388ff,#a16bff);
+    }
+
+    .field {
+      width: 100%;
+      background: #0b1223;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      color: white;
+      padding: 12px;
+      margin: 8px 0 15px;
+      outline: none;
+    }
+
+    .field:focus {
+      border-color: #8296ff88;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%,20px);
+      opacity: 0;
+      pointer-events: none;
+      background: #1c2945;
+      color: white;
+      border: 1px solid #9bafff55;
+      padding: 12px 17px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      z-index: 20;
+      transition: .25s;
+      max-width: 90%;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%,0);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      margin-top: 45px;
+      padding-top: 20px;
+      color: #7886a6;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    @media (max-width:900px) {
+      .app {
+        padding: 0 22px 35px;
+      }
+
+      .hero {
+        padding: 35px;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .subject-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+
+    @media (max-width:650px) {
+      .app {
+        padding: 0 15px 28px;
+      }
+
+      .topbar {
+        height: 70px;
+      }
+
+      .brand {
+        font-size: 19px;
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+      }
+
+      .nav {
+        display: none;
+        position: absolute;
+        top: 69px;
+        left: 12px;
+        right: 12px;
+        z-index: 10;
+        padding: 9px;
+        background: #131d34;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav.open {
+        display: flex;
+      }
+
+      .nav button {
+        text-align: left;
+        padding: 13px;
+      }
+
+      .mobile-menu {
+        display: block;
+        border: 1px solid var(--line);
+        background: #ffffff0b;
+        border-radius: 11px;
+        padding: 9px 12px;
+        cursor: pointer;
+      }
+
+      .profile-btn {
+        display: none;
+      }
+
+      .page {
+        padding-top: 22px;
+      }
+
+      .hero {
+        display: block;
+        padding: 27px 21px;
+        min-height: unset;
+        border-radius: 22px;
+      }
+
+      .hero h1 {
+        font-size: 37px;
+        letter-spacing: -1.2px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .hero-art {
+        min-height: 180px;
+        margin-top: 12px;
+      }
+
+      .orbit {
+        width: 150px;
+        height: 150px;
+      }
+
+      .orbit:before {
+        width: 195px;
+        height: 78px;
+      }
+
+      .orbit:after {
+        width: 78px;
+        height: 195px;
+      }
+
+      .orbit-core {
+        width: 78px;
+        height: 78px;
+        border-radius: 24px;
+        font-size: 32px;
+      }
+
+      .search-box {
+        margin-top: 20px;
+        gap: 8px;
+        padding-left: 12px;
+      }
+
+      .search-box input {
+        font-size: 14px;
+      }
+
+      .search-box .primary {
+        padding: 11px 12px;
+        font-size: 13px;
+      }
+
+      .section-head {
+        margin: 27px 0 14px;
+      }
+
+      h2 {
+        font-size: 21px;
+      }
+
+      .subject-grid {
+        gap: 10px;
+      }
+
+      .subject-card {
+        padding: 15px;
+        min-height: 135px;
+      }
+
+      .subject-icon {
+        width: 39px;
+        height: 39px;
+        margin-bottom: 11px;
+      }
+
+      .subject-card h3 {
+        font-size: 15px;
+      }
+
+      .subject-card p {
+        font-size: 11px;
+      }
+
+      .feature-grid {
+        gap: 9px;
+      }
+
+      .feature-card {
+        padding: 14px;
+      }
+
+      .stats-grid {
+        gap: 9px;
+      }
+
+      .stat-number {
+        font-size: 24px;
+      }
+
+      .card {
+        padding: 17px;
+      }
+
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .topic-list {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="brand" href="#" data-go="home" aria-label="ILMIX bosh sahifa">
+      <span class="brand-mark">I</span>
+      <span>ILMIX<small>LEARN • UNDERSTAND • GROW</small></span>
+    </a>
+
+    <nav class="nav" id="mainNav" aria-label="Asosiy navigatsiya">
+      <button class="active" data-go="home">Bosh sahifa</button>
+      <button data-go="subjects">Fanlar</button>
+      <button data-go="lesson">AI Ustoz</button>
+      <button data-go="saved">Saqlanganlar</button>
+      <button data-go="progress">Natijalar</button>
+    </nav>
+
+    <button class="profile-btn" data-go="profile">Profil ↗</button>
+    <button class="mobile-menu" id="menuBtn" aria-label="Menyuni ochish" aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+
+    <section class="page active" id="home">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Bilim olishning yangi usuli</div>
+
+          <h1>Har bir mavzu <span class="gradient-text">tushunarli.</span></h1>
+
+          <p>
+            Qiyin mavzularni sodda tilda o‘rganing.
+            O‘zingizga mos tezlikda bilim oling va natijangizni kuzatib boring.
+          </p>
+
+          <div class="search-box">
+            <span>⌕</span>
+            <input id="topicSearch" type="search" placeholder="Qaysi mavzuni o‘rganmoqchisiz?" autocomplete="off">
+            <button class="primary" id="searchBtn">Izlash</button>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit">
+            <div class="orbit-core">I</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <h2>O‘rganishni boshlang</h2>
+          <p>O‘zingizga kerakli fanni tanlang</p>
+        </div>
+        <button class="text-btn" data-go="subjects">Barcha fanlar →</button>
+      </div>
+
+      <div class="subject-grid" id="homeSubjects"></div>
+
+      <div class="section-head">
+        <div>
+          <h2>ILMIX imkoniyatlari</h2>
+          <p>O‘qishni tartibli va qulay qilish uchun</p>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="symbol">✦</div>
+          <h3>Sodda tushuntirish</h3>
+          <p>Mavzularni oddiy misollar bilan tushunishga yordam beruvchi darslar.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="symbol">◖</div>
+          <h3>Ovozli darslar</h3>
+          <p>Ovozli o‘qish funksiyasi keyingi bosqichda ulanadi.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="symbol">✓</div>
+          <h3>Bilimni tekshirish</h3>
+          <p>Mashqlar va testlar orqali o‘rganganlaringizni mustahkamlang.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="symbol">↗</div>
+          <h3>Natijalar</h3>
+          <p>O‘rgangan mavzularingizni ushbu qurilmada kuzatib boring.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="subjects">
+      <div class="eyebrow">Bilimlar olami</div>
+      <h1>Fanlarni <span class="gradient-text">tanlang.</span></h1>
+      <p>O‘rganmoqchi bo‘lgan faningizni tanlang. Mavzular bosqichma-bosqich kengaytiriladi.</p>
+      <div class="subject-grid" id="allSubjects"></div>
+    </section>
+
+    <section class="page" id="lesson">
+      <div class="eyebrow">O‘rganish xonasi</div>
+
+      <div class="section-head" style="margin-top:10px">
+        <div>
+          <h2 id="lessonHeading">Matematika: Kvadrat tenglama</h2>
+          <p id="lessonSub">9-sinf • Algebra • Namunaviy dars</p>
+        </div>
+        <span class="badge">Namuna dars</span>
+      </div>
+
+      <div class="lesson-layout">
+        <article class="card">
+          <div class="lesson-title">
+            <div>
+              <h2 id="lessonTopic">Kvadrat tenglama nima?</h2>
+              <p style="margin:7px 0 0">Keling, mavzuni sodda qilib tushunamiz.</p>
+            </div>
+            <span class="badge">5 daqiqa</span>
+          </div>
+
+          <div class="lesson-body" id="lessonContent">
+            <p>
+              Kvadrat tenglama — noma’lum sonning kvadrati qatnashgan tenglama.
+              Uning umumiy ko‘rinishi quyidagicha:
+            </p>
+
+            <div class="formula">ax² + bx + c = 0, &nbsp; a ≠ 0</div>
+
+            <h3>Bu harflar nimani anglatadi?</h3>
+
+            <p>
+              <b>a, b, c</b> — ma’lum sonlar, <b>x</b> esa biz topishimiz kerak
+              bo‘lgan noma’lum son. Muhimi, <b>a nolga teng bo‘lmasligi kerak.</b>
+            </p>
+
+            <div class="example">
+              <b>Oddiy misol:</b><br>
+              x² − 5x + 6 = 0. Bu yerda a = 1, b = −5, c = 6.
+            </div>
+
+            <h3>Yodda tuting</h3>
+
+            <p>
+              Kvadrat tenglamada x ning eng katta darajasi 2 bo‘ladi.
+              Keyingi darsda diskriminant yordamida yechimlarni topishni o‘rganish mumkin.
+            </p>
+          </div>
+
+          <div class="lesson-actions">
+            <button class="primary" id="completeLesson">✓ Mavzuni o‘rgandim</button>
+            <button class="secondary" id="saveLesson">☆ Saqlash</button>
+            <button class="secondary" id="readLesson">🔊 O‘qib berish</button>
+          </div>
+
+          <div class="notice">
+            Bu hozircha ILMIX ichidagi namunaviy dars.
+            Haqiqiy AI ustoz, avtomatik javoblar va sifatli ovozli suhbat
+            hali server hamda AI xizmatiga ulanmagan.
+          </div>
+        </article>
+
+        <aside class="card">
+          <h3>Dars rejasi</h3>
+
+          <div class="side-list">
+            <div class="side-item">
+              <span>①</span>
+              <div>
+                <b>Mavzu bilan tanishish</b>
+                <div class="muted" style="font-size:12px">Asosiy tushuncha</div>
+              </div>
+            </div>
+
+            <div class="side-item">
+              <span>②</span>
+              <div>
+                <b>Misolni ko‘rish</b>
+                <div class="muted" style="font-size:12px">Hayotiy izoh</div>
+              </div>
+            </div>
+
+            <div class="side-item">
+              <span>③</span>
+              <div>
+                <b>Mustahkamlash</b>
+                <div class="muted" style="font-size:12px">Keyingi bosqich</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="notice">
+            Brauzeringiz ovozli o‘qishni qo‘llasa, “O‘qib berish” tugmasi
+            matnni qurilma ovozida o‘qiydi. Ovoz sifati qurilmaga bog‘liq.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="page" id="saved">
+      <div class="eyebrow">Shaxsiy kutubxona</div>
+      <h1>Saqlangan <span class="gradient-text">mavzular.</span></h1>
+      <p>Keyinroq qaytib o‘qimoqchi bo‘lgan darslaringiz shu yerda ko‘rinadi.</p>
+      <div id="savedList" class="topic-list"></div>
+    </section>
+
+    <section class="page" id="progress">
+      <div class="eyebrow">O‘sishingiz</div>
+      <h1>Bilimingizni <span class="gradient-text">kuzating.</span></h1>
+      <p>Ushbu qurilmada saqlangan o‘quv faolligingiz.</p>
+
+      <div class="stats-grid">
+        <div class="card">
+          <div class="muted">O‘rganilgan mavzular</div>
+          <div class="stat-number" id="doneCount">0</div>
+        </div>
+
+        <div class="card">
+          <div class="muted">Saqlangan mavzular</div>
+          <div class="stat-number" id="savedCount">0</div>
+        </div>
+
+        <div class="card">
+          <div class="muted">Tanlangan fanlar</div>
+          <div class="stat-number">6</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Umumiy faollik</h3>
+        <p>Namuna darsni yakunlaganingizda natijangiz shu yerda yangilanadi.</p>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p id="progressLabel" style="font-size:12px;margin-bottom:0">0 ta mavzu o‘rganilgan</p>
+      </div>
+    </section>
+
+    <section class="page" id="profile">
+      <div class="eyebrow">Hisob sozlamalari</div>
+      <h1>Sizning <span class="gradient-text">profilingiz.</span></h1>
+
+      <div class="card" style="max-width:650px">
+        <div class="profile-top">
+          <div class="avatar">U</div>
+          <div>
+            <h2 id="profileName">O‘quvchi</h2>
+            <p style="margin:5px 0">ILMIX foydalanuvchisi</p>
+          </div>
+        </div>
+
+        <label for="nameInput" class="muted">Ismingiz</label>
+        <input class="field" id="nameInput" maxlength="30" placeholder="Ismingizni kiriting">
+
+        <button class="primary" id="saveProfile">Saqlash</button>
+
+        <div class="notice">
+          Profil nomi va o‘quv natijalari hozircha faqat shu brauzer/qurilmada saqlanadi.
+          Boshqa qurilmaga avtomatik o‘tmaydi; buning uchun keyinchalik hisob va ma’lumotlar bazasi ulanadi.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 ILMIX. Bilim — kelajak sari qadam.</span>
+    <span>Ta’limni osonroq tushunish uchun yaratilmoqda.</span>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const subjects = [
+    {
+      name:"Matematika",
+      desc:"Hisoblash, algebra va geometriya",
+      icon:"∑",
+      color:"blue",
+      topic:"Kvadrat tenglama"
+    },
+    {
+      name:"Ingliz tili",
+      desc:"Grammatika va yangi so‘zlar",
+      icon:"文",
+      color:"purple",
+      topic:"This, that, these, those"
+    },
+    {
+      name:"Fizika",
+      desc:"Tabiat qonunlari va hodisalar",
+      icon:"⚛",
+      color:"cyan",
+      topic:"Tezlik va masofa"
+    },
+    {
+      name:"Kimyo",
+      desc:"Moddalar va kimyoviy jarayonlar",
+      icon:"⚗",
+      color:"green",
+      topic:"Atom va molekula"
+    },
+    {
+      name:"Biologiya",
+      desc:"Tirik organizmlar olami",
+      icon:"❋",
+      color:"orange",
+      topic:"Hujayra tuzilishi"
+    },
+    {
+      name:"Ona tili",
+      desc:"Til qoidalari va savodxonlik",
+      icon:"✎",
+      color:"pink",
+      topic:"So‘z turkumlari"
+    }
+  ];
+
+  const defaultState = {
+    saved: [],
+    done: [],
+    name: ""
+  };
+
+  let state = loadState();
+
+  function loadState() {
+    try {
+      const data = JSON.parse(localStorage.getItem("ilmix_state") || "{}");
+
+      return {
+        ...defaultState,
+        ...data,
+        saved: Array.isArray(data.saved) ? data.saved : [],
+        done: Array.isArray(data.done) ? data.done : []
+      };
+    } catch(e) {
+      return {...defaultState};
+    }
+  }
+
+  function persist() {
+    try {
+      localStorage.setItem("ilmix_state", JSON.stringify(state));
+    } catch(e) {
+      showToast("Brauzer xotirasiga saqlash imkoni bo‘lmadi.");
+    }
+
+    renderStats();
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(showToast.timer);
+
+    showToast.timer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2500);
+  }
+
+  function go(page) {
+    const target = document.getElementById(page);
+
+    if(!target) return;
+
+    document.querySelectorAll(".page").forEach(el => {
+      el.classList.toggle("active", el.id === page);
+    });
+
+    document.querySelectorAll(".nav [data-go]").forEach(el => {
+      el.classList.toggle("active", el.dataset.go === page);
+    });
+
+    document.getElementById("mainNav").classList.remove("open");
+
+    document.getElementById("menuBtn").setAttribute("aria-expanded", "false");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+    if(page === "saved") renderSaved();
+    if(page === "progress") renderStats();
+    if(page === "profile") renderProfile();
+  }
+
+  document.querySelectorAll("[data-go]").forEach(el => {
+    el.addEventListener("click", e => {
+      e.preventDefault();
+      go(el.dataset.go);
+    });
+  });
+
+  document.getElementById("menuBtn").addEventListener("click", () => {
+    const nav = document.getElementById("mainNav");
+    const open = nav.classList.toggle("open");
+
+    document.getElementById("menuBtn").setAttribute("aria-expanded", String(open));
+  });
+
+  function subjectCard(subject) {
+    return `
+      <article class="subject-card"
+        tabindex="0"
+        role="button"
+        aria-label="${subject.name} fanini ochish"
+        data-subject="${subject.name}">
+
+        <div class="subject-icon ${subject.color}">${subject.icon}</div>
+        <h3>${subject.name}</h3>
+        <p>${subject.desc}</p>
+
+      </article>
+    `;
+  }
+
+  document.getElementById("homeSubjects").innerHTML =
+    subjects.slice(0,3).map(subjectCard).join("");
+
+  document.getElementById("allSubjects").innerHTML =
+    subjects.map(subjectCard).join("");
+
+  function openSubject(name) {
+    const subject = subjects.find(s => s.name === name);
+
+    if(!subject) return;
+
+    document.getElementById("lessonHeading").textContent = name;
+    document.getElementById("lessonSub").textContent = "Namunaviy mavzu • ILMIX";
+    document.getElementById("lessonTopic").textContent = subject.topic;
+
+    if(name === "Matematika") {
+      document.getElementById("lessonContent").innerHTML = `
+        <p>
+          Kvadrat tenglama — noma’lum sonning kvadrati qatnashgan tenglama.
+        </p>
+
+        <div class="formula">ax² + bx + c = 0, &nbsp; a ≠ 0</div>
+
+        <h3>Asosiy tushuncha</h3>
+
+        <p>
+          a, b, c — ma’lum sonlar, x esa topilishi kerak bo‘lgan noma’lum son.
+        </p>
+
+        <div class="example">
+          <b>Misol:</b><br>
+          x² − 5x + 6 = 0. Bu yerda a = 1, b = −5, c = 6.
+        </div>
+
+        <h3>Yodda tuting</h3>
+
+        <p>
+          Kvadrat tenglamada x ning eng katta darajasi 2 bo‘ladi.
+        </p>
+      `;
+    } else {
+      document.getElementById("lessonContent").innerHTML = `
+        <p>
+          <b>${subject.topic}</b> — ${name} fanidagi o‘rganish uchun tanlangan mavzu.
+        </p>
+
+        <div class="example">
+          Bu bo‘lim hozircha namuna. Ushbu fan bo‘yicha to‘liq,
+          tekshirilgan dars materiallari keyingi ishlab chiqish bosqichida qo‘shiladi.
+        </div>
+
+        <h3>Keyingi qadam</h3>
+
+        <p>
+          Mavzuni ishonchli darsliklar va o‘qituvchi tavsiyalari asosida
+          bosqichma-bosqich to‘ldirish rejalashtirilgan.
+        </p>
+      `;
+    }
+
+    go("lesson");
+  }
+
+  document.addEventListener("click", e => {
+    const card = e.target.closest("[data-subject]");
+
+    if(card) {
+      openSubject(card.dataset.subject);
+    }
+  });
+
+  document.addEventListener("keydown", e => {
+    if(
+      (e.key === "Enter" || e.key === " ") &&
+      e.target.matches("[data-subject]")
+    ) {
+      e.preventDefault();
+      openSubject(e.target.dataset.subject);
+    }
+  });
+
+  function searchTopic() {
+    const q = document.getElementById("topicSearch").value.trim().toLowerCase();
+
+    if(!q) {
+      showToast("Avval mavzu nomini yozing.");
+      return;
+    }
+
+    const subject = subjects.find(s =>
+      s.name.toLowerCase().includes(q) ||
+      s.topic.toLowerCase().includes(q)
+    );
+
+    if(subject) {
+      openSubject(subject.name);
+      return;
+    }
+
+    showToast("Bu mavzu hozircha namunaviy katalogda yo‘q.");
+  }
+
+  document.getElementById("searchBtn").addEventListener("click", searchTopic);
+
+  document.getElementById("topicSearch").addEventListener("keydown", e => {
+    if(e.key === "Enter") searchTopic();
+  });
+
+  function renderSaved() {
+    const box = document.getElementById("savedList");
+
+    if(!state.saved.length) {
+      box.innerHTML = `
+        <div class="empty" style="grid-column:1/-1">
+          Hozircha saqlangan mavzu yo‘q.
+          <br><br>
+          Dars ichidagi “Saqlash” tugmasini bosing.
+        </div>
+      `;
+      return;
+    }
+
+    box.innerHTML = state.saved.map(item => `
+      <div class="topic-row">
+        <div>
+          <b>${escapeHtml(item)}</b>
+          <p>Saqlangan mavzu</p>
+        </div>
+
+        <button class="secondary" data-remove="${escapeHtml(item)}">
+          O‘chirish
+        </button>
+      </div>
+    `).join("");
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[c]));
+  }
+
+  document.getElementById("savedList").addEventListener("click", e => {
+    const btn = e.target.closest("[data-remove]");
+
+    if(!btn) return;
+
+    state.saved = state.saved.filter(x => x !== btn.dataset.remove);
+
+    persist();
+    renderSaved();
+
+    showToast("Saqlangan mavzu o‘chirildi.");
+  });
+
+  document.getElementById("saveLesson").addEventListener("click", () => {
+    const topic = document.getElementById("lessonTopic").textContent;
+
+    if(state.saved.includes(topic)) {
+      showToast("Bu mavzu allaqachon saqlangan.");
+      return;
+    }
+
+    state.saved.push(topic);
+
+    persist();
+
+    showToast("Mavzu saqlandi.");
+  });
+
+  document.getElementById("completeLesson").addEventListener("click", () => {
+    const topic = document.getElementById("lessonTopic").textContent;
+
+    if(state.done.includes(topic)) {
+      showToast("Bu mavzu avval yakunlangan.");
+      return;
+    }
+
+    state.done.push(topic);
+
+    persist();
+
+    showToast("Barakalla! Mavzu o‘rganilganlar ro‘yxatiga qo‘shildi.");
+  });
+
+  document.getElementById("readLesson").addEventListener("click", () => {
+    if(!("speechSynthesis" in window)) {
+      showToast("Bu brauzer ovozli o‘qishni qo‘llamaydi.");
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const text = document.getElementById("lessonContent").innerText;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    utterance.lang = "uz-UZ";
+    utterance.rate = 0.9;
+
+    utterance.onerror = () => {
+      showToast("Ovozli o‘qish qurilmangizda ishlamadi.");
+    };
+
+    window.speechSynthesis.speak(utterance);
+  });
+
+  function renderStats() {
+    document.getElementById("doneCount").textContent = state.done.length;
+
+    document.getElementById("savedCount").textContent = state.saved.length;
+
+    const percent = Math.min(100, Math.round(state.done.length / 6 * 100));
+
+    document.getElementById("progressFill").style.width = percent + "%";
+
+    document.getElementById("progressLabel").textContent =
+      state.done.length + " ta mavzu o‘rganilgan";
+  }
+
+  function renderProfile() {
+    document.getElementById("profileName").textContent =
+      state.name || "O‘quvchi";
+
+    document.getElementById("nameInput").value =
+      state.name || "";
+  }
+
+  document.getElementById("saveProfile").addEventListener("click", () => {
+    state.name = document.getElementById("nameInput").value.trim().slice(0,30);
+
+    persist();
+    renderProfile();
+
+    showToast("Profil nomi saqlandi.");
+  });
+
+  renderStats();
+  renderSaved();
+  renderProfile();
+</script>
+
+</body>
+</html>
